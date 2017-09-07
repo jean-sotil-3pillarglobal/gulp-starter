@@ -1,1 +1,1 @@
-define(["jquery"],function(){"use strict";return function(){return{init:function(){$("html").css("background","red")}}}()});
+define(["jquery"],function(){"use strict";return function(){return{init:function(){$("#rs-app").load("/public/views/commons/header.html")}}}()});

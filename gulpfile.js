@@ -93,16 +93,16 @@ gulp.task("watch:prod", function() {
 gulp.task('server', function(){
   plugins.connect.server({
     root: '.',
-    livereload: true,
-    port: 9001
+    port: 9001,
+    livereload: true
   });
 });
 
 // Serve task
-gulp.task('serve', ['less-styles', 'js-bundle', 'html-hint', 'watch:dev']);
+gulp.task('serve', ['less-styles', 'js-bundle', 'html-hint', 'imagemin','watch:dev']);
 
 // Serve task
-gulp.task('serve:prod', ['minify-css', 'minify-js', 'html-hint', 'watch:prod']);
+gulp.task('serve:prod', ['minify-css', 'minify-js', 'html-hint', 'imagemin','watch:prod']);
 
 
 // Default

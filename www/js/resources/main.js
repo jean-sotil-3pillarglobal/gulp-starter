@@ -4,7 +4,7 @@ define(['jquery'], function () {
   function main() {
 
     function init() {
-      $('html').css('background', 'red');
+      $('#rs-app').load('/public/views/commons/header.html');
     }
 
     return {
