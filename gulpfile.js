@@ -3,7 +3,7 @@ var plugins = require('gulp-load-plugins')();
 var config = require('./config')();
 var del = require('del');
 
-// LESS compiler task
+// LESS bundle task
 gulp.task('less-styles', function() {
     return gulp.src(config.dev.less)
         .pipe(plugins.concat('bundle.css'))
@@ -15,21 +15,20 @@ gulp.task('less-styles', function() {
         }))
         .pipe(plugins.autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
         .pipe(gulp.dest(config.public.styles))
-        .pipe(plugins.livereload());
+        .pipe(plugins.connect.reload());
 });
 
-// JS compiler task
+// JS bundle task
 gulp.task('js-bundle', ['js-lint'], function() {
     return gulp.src(config.dev.js)
-        .pipe(plugins.concat("bundle.js"))
-        .pipe(gulp.dest("./public/js"))
-        .pipe(plugins.livereload());
+        .pipe(gulp.dest("./public"))
+        .pipe(plugins.connect.reload());
 });
 
 // Minify JS task
 gulp.task('minify-js', ['js-bundle'], function() {
     return gulp.src(config.public['bundle-js'])
-        .pipe(plugins.minify())
+        .pipe(plugins.uglify())
         .pipe(gulp.dest(config.public.js));
 });
 
@@ -61,7 +60,8 @@ gulp.task('html-hint', ['jade-html'], function() {
 gulp.task('jade-html', ['del:views'], function() {
     gulp.src(config.dev.templates)
         .pipe(plugins.jade({ pretty: true }))
-        .pipe(gulp.dest(config.public.templates));
+        .pipe(gulp.dest(config.public.templates))
+        .pipe(plugins.connect.reload());
 });
 
 // Delete views
@@ -78,16 +78,24 @@ gulp.task('imagemin', function() {
 
 // Watcher:dev
 gulp.task("watch:dev", function() {
-    plugins.livereload.listen();
     gulp.watch(config.dev.js, ['js-bundle'])
     gulp.watch(config.dev.less, ['less-styles']);
+    gulp.watch(config.dev.templates, ['jade-html']);
 });
 
 // Watcher:prod
 gulp.task("watch:prod", function() {
-    plugins.livereload.listen();
     gulp.watch(config.dev.js, ['minify-js'])
     gulp.watch(config.dev.less, ['minify-css']);
+    gulp.watch(config.dev.templates, ['jade-html']);
+});
+
+gulp.task('server', function(){
+  plugins.connect.server({
+    root: '.',
+    livereload: true,
+    port: 9001
+  });
 });
 
 // Serve task

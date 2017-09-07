@@ -14,8 +14,9 @@ module.exports = function(){
 		"public" : {
 			"styles": "./public/styles",
 			"bundle-css": "./public/styles/bundle.css",
-			"js": "./public/js",
-			"bundle-js": './public/js/bundle.js',
+			"js": "./public",
+			"bundle-js": ["./public/*.js",
+				"./public/**/*.js"],
 			"templates": "./public/views",
 			"html": ["index.html", 
 				"./public/views/**/*.html"],

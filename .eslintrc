@@ -13,7 +13,6 @@
     "rules": {
         "comma-dangle": ["error", "never"],
         "no-cond-assign": ["error", "always"],
-        "no-console": ["error", { "allow": ["warn", "error"] }],
         "no-constant-condition": "error",
         "no-control-regex": "error",
         "no-debugger": "error",

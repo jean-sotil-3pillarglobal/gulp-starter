@@ -1,0 +1,1 @@
+define(["jquery"],function(){"use strict";return function(){return{init:function(){$("html").css("background","red")}}}()});
