@@ -1,1 +1,1 @@
-!function(){"use strict";require(["./resources/main"],function(i){i.init()})}();
+!function(){"use strict";require(["jquery","./resources/main","./utils/constants"],function(e,t,s){$(s.sections.id.header).load(s.sections.templates.header),$(s.sections.id.footer).load(s.sections.templates.footer),t.init()})}();

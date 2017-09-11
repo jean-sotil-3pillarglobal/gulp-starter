@@ -1,0 +1,1 @@
+define([""],function(){"use strict";return{sections:{id:{header:$("#rs-header"),main:$("#rs-app"),footer:$("#rs-footer")},templates:{header:"/public/views/commons/header.html",footer:"/public/views/commons/footer.html",resources:{main:"/public/views/resources/main.html"}}}}});

@@ -2,7 +2,7 @@ module.exports = function(){
 	var config = {
 		"port": 8000,
 		"dev": {
-			"less": "./www/styles/main.less",
+			"less": "./www/styles/*.less",
 			"js": [
 				"!node_modules/**",
 				"./www/*.js",

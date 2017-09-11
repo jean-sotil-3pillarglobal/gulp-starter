@@ -1,0 +1,54 @@
+
+<div class="section">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="col-md-12">
+        <div class="col-md-2 col-md-offset-9 text-right"><a data-toggle="modal" data-target="#add-modal" class="btn btn-success">Add a new Resource</a></div>
+      </div>
+      <div class="col-md-12">
+        <div class="col-md-10 col-md-offset-1">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Enterprise Id</th>
+                <th>Name</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="container"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="add-modal" class="modal fade">
+  <div role="document" class="modal-dialog row">
+    <div class="modal-content col-md-8 col-md-offset-2">
+      <div class="modal-body">
+        <form class="form">
+          <div class="form-group">
+            <label for="enterprise-id" class="form-control-label">Enterprise Id</label>
+            <input id="enterprise-id" type="text" required="true" class="form-control check"/>
+          </div>
+          <div class="form-group">
+            <label for="enterprise-name" class="form-control-label">Name</label>
+            <input id="enterprise-name" type="text" required="true" class="form-control check"/>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer"><a id="btn-submit" class="btn btn-success">Save</a><a data-dismiss="modal" class="btn btn-danger">Cancel</a></div>
+    </div>
+  </div>
+</div>
+<script type="text/template" id="table-html">
+  	<% _.each( data, function(item) {%>
+  		<tr>
+  			<td><%= item.id %></th>
+  			<td><%= item.name %></th>
+  			<td class="text-right">
+  				<a class="btn btn-danger btn-delete" data-id='<%= item.id %>'>Delete</a>	
+  			</td>
+  		</th>
+  	<% }); %>
+</script>

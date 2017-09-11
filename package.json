@@ -4,8 +4,10 @@
   "description": "This app is responsible to add resources to a local database.",
   "main": "index.js",
   "scripts": {
-    "run": "node_modules/.bin/gulp serve",
-    "run:prod": "node_modules/.bin/gulp serve:prod"
+    "gulp": "node_modules/.bin/gulp",
+    "run:dev": "gulp serve",
+    "run:prod": "gulp serve:prod",
+    "server": "gulp server"
   },
   "author": "Jean Paul Sotil Pastor",
   "license": "ISC",

@@ -1,0 +1,41 @@
+div.section
+	div.row
+		div.col-md-8.col-md-offset-2
+			div.col-md-12
+				div.col-md-2.col-md-offset-9.text-right
+					a.btn.btn-success(data-toggle="modal" data-target="#add-modal") Add a new Resource
+			div.col-md-12
+				div.col-md-10.col-md-offset-1
+					table.table.table-striped
+						thead
+							tr
+								th Enterprise Id
+								th Name
+								th
+						tbody(id="container")
+
+div.modal.fade(id="add-modal")
+	div.modal-dialog(role="document").row
+		div.modal-content.col-md-8.col-md-offset-2
+				div.modal-body
+					form.form
+						div.form-group
+							label.form-control-label(for="enterprise-id") Enterprise Id
+							input.form-control.check(id='enterprise-id' type="text" required="true")
+						div.form-group
+							label.form-control-label(for="enterprise-name") Name
+							input.form-control.check(id='enterprise-name' type="text" required="true")
+				div.modal-footer
+					a.btn.btn-success(id="btn-submit") Save
+					a.btn.btn-danger(data-dismiss="modal") Cancel
+
+script(type="text/template" id="table-html")
+	|	<% _.each( data, function(item) {%>
+	|		<tr>
+	|			<td><%= item.id %></th>
+	|			<td><%= item.name %></th>
+	|			<td class="text-right">
+	|				<a class="btn btn-danger btn-delete" data-id='<%= item.id %>'>Delete</a>	
+	|			</td>
+	|		</th>
+	|	<% }); %>

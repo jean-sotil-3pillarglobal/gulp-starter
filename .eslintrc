@@ -8,7 +8,8 @@
     },
     "globals": {
         "google": false,
-        "Cookies": true
+        "Cookies": true,
+        "_": true
     },
     "rules": {
         "comma-dangle": ["error", "never"],
