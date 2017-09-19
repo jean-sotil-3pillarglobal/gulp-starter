@@ -20,33 +20,43 @@ define([''], function () {
      * @return {void}
      */
     function validate(selector, callback, onchange) {
-      /** The function's `dirty` property. */
-      var dirty = false;
+      /** The function's `$form` property. */
+      var $form = $(selector),
 
-      $(selector).find('.has-error').removeClass().promise().done(function () {
+        /** The function's `dirty` property. */
+        dirty = false;
+
+      $form.find('.has-error').removeClass().promise().done(function () {
         // Validate each '.check' element.
-        $(selector).find('.check').on('change', function () {
+        $form.find('.check').on('change', function () {
 
           // Check if 'selector' has dirty class.
-          if ($(selector).hasClass('dirty')) {
+          if ($form.hasClass('dirty')) {
             validate(selector, null, true);
           }
         }).each(function (i, element) {
+          /** The function's `$element` property. */
+          var $element = $(element),
+
+            /** The function's `invalid` property. */
+            invalid = false;
 
           // Check if value is ''.
-          if ($(element).val() === '') {
+          if ($element.val() === '') {
             dirty = true;
+            invalid = true;
           }
 
           // Check if invalid.
-          if (dirty) {
-            $(element).parent().addClass('has-error');
+          if (invalid) {
+            $element.parent().addClass('has-error');
           }
         })
           .promise()
           .done(function () {
+
             // Add 'dirty' class.
-            $(selector).addClass('dirty');
+            $form.addClass('dirty');
             // Check if can execute callback function.
             if (!onchange) {
               callback(dirty);

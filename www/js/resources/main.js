@@ -15,6 +15,8 @@ define(['../utils/constants',
    * @alias module:/utils/form
    */
   function resources() {
+    /** The class's `$container` property. */
+    var $container = null;
 
     /**
      * Display data into resources table.
@@ -23,15 +25,21 @@ define(['../utils/constants',
     function display() {
       /** The function's `template` property. */
       var template = _.template($('#table-html').html()),
-        compiled = template({ data: local.get() });
 
-      $('#container').html(compiled);
+        /** The function's `compiled` property. */
+        compiled = template({ data: local.get() }),
 
-      // Display data if exist
+        /** The function's `$table` property. */
+        $table = $('table');
+
+      // Set container's HTML.
+      $container.html(compiled);
+
+      // Show data if exist
       if (local.get().length !== 0) {
-        $('table').removeClass('hide');
+        $table.removeClass('hide');
       } else {
-        $('table').addClass('hide');
+        $table.addClass('hide');
       }
     }
 
@@ -79,9 +87,9 @@ define(['../utils/constants',
       // Submit event click - handler.
       $('#btn-submit').off('click').on('click', create);
       // Delete event click - remove record.
-      $('#container .btn-delete').off('click').on('click', remove);
+      $container.find('.btn-delete').off('click').on('click', remove);
       // Re-attach events.
-      $('#container').off().on('DOMNodeInserted DOMNodeRemoved', attachEvent);
+      $container.off().on('DOMNodeInserted DOMNodeRemoved', attachEvent);
     }
 
     /**
@@ -89,6 +97,8 @@ define(['../utils/constants',
      * @return {void}
      */
     function build() {
+      // $container init
+      $container = $('#container');
 
       // Attach events
       attachEvent();
